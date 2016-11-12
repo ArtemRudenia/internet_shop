@@ -18,7 +18,7 @@ namespace WebApplication4.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View(db.Categories);
         }
 
         // GET: Categories/Details/5
@@ -51,7 +51,7 @@ namespace WebApplication4.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Products.Add(category);
+                db.Categories.Add(category);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace WebApplication4.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Products.Find(id);
+            Category category = db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace WebApplication4.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Products.Find(id);
+            Category category = db.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace WebApplication4.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Products.Find(id);
-            db.Products.Remove(category);
+            Category category = db.Categories.Find(id);
+            db.Categories.Remove(category);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
